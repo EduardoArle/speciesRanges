@@ -1,0 +1,67 @@
+---
+title: "Using_speciesRanges"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using_speciesRanges}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.width = 8,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(speciesRanges)
+```
+
+# Tutorial to install and use speciesRanges
+
+This tutorial aims to guide the user from the installation to the data visualisation of speciesRanges. We will walk the user through some examples. The first example uses a convex hull, produced  based on the species occurrence points, as the basis to calculate the species range. The second example uses range maps provided by the user as the base for the updated range. We ran all tests in a computer with 8GB of RAM, the execution times of each function may vary depending on the computer configuration.
+
+## Installing speciesRanges
+
+```{r, eval = FALSE}
+install.packages ("devtools")
+library(devtools)
+devtools::install_github ("EduardoArle/speciesRanges")
+library(speciesRanges)
+```
+
+## Example 1 - Convex hull as basis for the range map, using a simulated species.
+
+1 - Preparing and visualising the input data. The function *occData* allows to standardise occurrence point data to feed the model.
+
+```{r}
+test_data <- data.frame(sps=rep("Equus acephalus",10),
+             lon=c(-43.2,-58.4,-56,-44,-54.5,-57.4,-60.1,
+                   -68.5,-71.3,-47.5),
+             lat=c(-22.9,-34.6,-34.8,-20,-25.5,-25.2,-3,
+                   -32.5,-41.1,-15.5),
+             gender=rep("female",10),
+             head_size=rep("headless individual"),
+            occ=c(TRUE,TRUE,TRUE,FALSE,FALSE,TRUE,TRUE,
+                  FALSE,TRUE,TRUE))
+
+sps_occurrence <- occData(occ_table = test_data,
+                          species = "sps",
+                          longitude = "lon",
+                          latitude = "lat",
+                          occurrence = "occ")
+
+plotPointData(sps_occurrence)
+```
+
+Running time: ≈ 1s.
+Output: a data.frame containing georeferenced records with column names matching the algorithm requirements.
+
+```{r}
+plotPointData(sps_occurrence)
+```
+
+Running time: ≈ 7s.
+Output: a map showing the presence and absence points, respectively in blue and red. 

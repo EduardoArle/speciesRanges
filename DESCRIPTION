@@ -1,0 +1,28 @@
+Package: speciesRanges
+Title: Create or update species range maps based on point-records.
+Version: 0.0.0.9000
+Language: en-GB
+Authors@R: c(person("Eduardo", "Arlé", email = "eduardo.arle@idiv.de", role = c("aut", "cre")),
+             person("Orr","Comay",email = "orrcomay@tauex.tau.ac.il", role = "ctb"))
+Description: Creates and updates species range maps based on presence and/or 
+    absence point-occurrence records, and existing range maps (if available).
+License: GPL (>= 2)
+Encoding: UTF-8
+URL: https://github.com/EduardoArle/speciesRanges
+BugReports: https://github.com/EduardoArle/speciesRanges/issues
+LazyData: true
+RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Imports: 
+    raster,
+    rgdal,
+    rgeos,
+    graphics,
+    rworldmap,
+    sp
+Depends: 
+    R (>= 2.10)
