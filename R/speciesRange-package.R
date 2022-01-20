@@ -15,3 +15,20 @@
 #'
 #' data(Euchloe_ausonia)
 NULL
+
+#' Euchloe ausonia range map exemplary file
+#'
+#' @format A data shapefile with 7 fields:
+#' \describe{
+#' \item{\code{fid}}{the feature ID}
+#' \item{\code{ButtID}}{the butterfly species ID}
+#' \item{\code{Species}}{the species}
+#' \item{\code{Heb_name}}{the species name in Hebrew}
+#' \item{\code{Heb_old_na}}{the species old name in Hebrew}
+#' \item{\code{Hermon_onl}}{NA}
+#' \item{\code{all_Israel}}{NA}
+
+#' }
+#'
+#' data(Euchloe_ausonia_shp)
+NULL

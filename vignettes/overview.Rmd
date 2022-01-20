@@ -52,16 +52,69 @@ sps_occurrence <- occData(occ_table = test_data,
                           longitude = "lon",
                           latitude = "lat",
                           occurrence = "occ")
-
-plotPointData(sps_occurrence)
 ```
 
 Running time: ≈ 1s.
 Output: a data.frame containing georeferenced records with column names matching the algorithm requirements.
 
-```{r}
-plotPointData(sps_occurrence)
+```{r, warning = FALSE}
+plotData(sps_occurrence)
 ```
 
-Running time: ≈ 7s.
+Running time: ≈ 1s.
 Output: a map showing the presence and absence points, respectively in blue and red. 
+
+2 - Creating and visualising a convex hull based on the species occurrence points. The parameter *realm* indicates it is a terrestrial species, eliminating the areas of the convex hull that overlap the ocean.
+
+```{r}
+convex_hull <- convexHull(sps_occurrence, 
+                          realm = "terrestrial")
+```
+
+Running time: ≈ 8s.
+Output: a map showing the presence and absence points, respectively in blue and red.
+
+```{r, warning = FALSE}
+plotData(sps_occurrence, range = convex_hull)
+```
+
+Running time: ≈ 1s.
+Output: a map showing the presence and absence points, respectively in blue and red; and the convex hull to be used as the basis for the range map, in green. 
+
+
+
+
+## Example 2 - Specialist range map provided by the user as the base for the updated range, using *Euchloe ausonia* as an example.
+
+1 - Preparing and visualising the input data.
+
+```{r}
+data("Euchloe_ausonia")
+test_data <- Euchloe_ausonia
+
+sps_occurrence <- occData(occ_table = test_data,
+                          species = "Species",
+                          longitude = "Longitude",
+                          latitude = "Latitude",
+                          occurrence = "occurrence")
+```
+
+Running time: ≈ 1s.
+Output: a data.frame containing georeferenced records with column names matching the algorithm requirements.
+
+```{r, warning = FALSE}
+plotData(sps_occurrence)
+```
+
+Running time: ≈ 1s.
+Output: a map showing the presence and absence points, respectively in blue and red.
+
+2 - Loading and visualising the species range map.
+
+```{r, warning = FALSE}
+data("Euchloe_ausonia_shp")
+plotData(sps_occurrence, range = Euchloe_ausonia_shp)
+```
+
+Running time: ≈ 1s.
+Output: a map showing the presence and absence points, respectively in blue and red; and the range map to be used as the basis for the updated version, in green. 
