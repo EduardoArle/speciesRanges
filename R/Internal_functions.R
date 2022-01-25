@@ -1,14 +1,13 @@
 #' @importFrom rgeos gBuffer
-#' @importFrom raster raster rasterize extract
+#' @importFrom raster rasterize extract raster
 #' @importFrom sp coordinates proj4string
-#' 
 #' 
 rangeBonus <- function(range, range_bonus, res){
   
   empty_raster <- raster(res = res) 
   empty_raster[] <- c(1:length(empty_raster))
   
-  range_raster <- raster::rasterize(range,empty_raster) #rasterise range
+  range_raster <- rasterize(range,empty_raster) #rasterise range
   range_raster[!is.na(range_raster[])] <- range_bonus/100
   range_raster[is.na(range_raster[])] <- 0
   

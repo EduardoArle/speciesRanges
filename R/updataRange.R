@@ -4,7 +4,7 @@
 #' data. The algorithm uses either a specialist range map or a convex hull as
 #' basis for the calculations
 #'
-#' @importFrom sp coordinates proj4string
+#' @importFrom sp coordinates proj4string CRS
 #' @importFrom raster stack extract rasterToPolygons
 #' @param occ dataFrame of the species occurrence. Output of function occData.
 #' @param range shapefile, the user can provide a specialist range map, or a 
