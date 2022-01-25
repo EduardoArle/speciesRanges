@@ -34,6 +34,7 @@ library(speciesRanges)
 
 ## Example 1 - Convex hull as basis for the range map, using a simulated species.
 
+
 1 - Preparing and visualising the input data. The function *occData* allows to standardise occurrence point data to feed the model.
 
 ```{r}
@@ -64,6 +65,7 @@ plotData(sps_occurrence)
 Running time: ≈ 1s.
 Output: a map showing the presence and absence points, respectively in blue and red. 
 
+
 2 - Creating and visualising a convex hull based on the species occurrence points. The parameter *realm* indicates it is a terrestrial species, eliminating the areas of the convex hull that overlap the ocean.
 
 ```{r}
@@ -82,9 +84,20 @@ Running time: ≈ 1s.
 Output: a map showing the presence and absence points, respectively in blue and red; and the convex hull to be used as the basis for the range map, in green. 
 
 
+3 - Updata the range map based on point records representing occurrence records - presences and/or absences, and specialist range maps when avaiable.
+
+```{r, warning = FALSE}
+new_range <- updateRange(occ, range)
+```
+
+Running time: ≈ 2s.
+Output: a shapefile representing an updated range map based on the convex hull using the occurrence points. The map will be pixelated according to the size of the grain cell.
+
+
 
 
 ## Example 2 - Specialist range map provided by the user as the base for the updated range, using *Euchloe ausonia* as an example.
+
 
 1 - Preparing and visualising the input data.
 
@@ -108,6 +121,7 @@ plotData(sps_occurrence)
 
 Running time: ≈ 1s.
 Output: a map showing the presence and absence points, respectively in blue and red.
+
 
 2 - Loading and visualising the species range map.
 
