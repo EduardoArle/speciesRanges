@@ -83,7 +83,7 @@ Running time: ≈ 1s.
 Output: a map showing the presence and absence points, respectively in blue and red; and the convex hull to be used as the basis for the range map, in green.\
 \
 \
-3 - Updata the range map based on point records representing occurrence records - presences and/or absences, and specialist range maps when avaiable.
+3 - Updata the range map based on point records representing presences and absences, and a convex hull produced with the presence records.
 
 ```{r, warning = FALSE}
 new_range <- updateRange(occ = sps_occurrence, 
@@ -91,7 +91,17 @@ new_range <- updateRange(occ = sps_occurrence,
 ```
 
 Running time: ≈ 2s.
-Output: a shapefile representing an updated range map based on the convex hull using the occurrence points. The map will be pixelated according to the size of the grain cell.\
+Output: a shapefile representing an updated range map based on the convex hull using the occurrence points.\
+\
+\
+4 - Visualise the species presences and absences, the previous range, and the updated range.
+
+```{r, warning = FALSE}
+visualiseResults(occ = sps_occurrence, regional = TRUE,                      range = convex_hull,
+                 updated_range = new_range)
+```
+Running time: ≈ 1s.
+Output: three maps representing the presences and absences, the convex hull used as basis for the range map, and the updated range map, respectively. The updated range map is pixelated according to the size of the grain cell.\
 \
 \
 ## Example 2 - Specialist range map provided by the user as the base for the updated range, using *Euchloe ausonia* as an example.\
@@ -128,4 +138,28 @@ plotData(sps_occurrence, range = Euchloe_ausonia_shp)
 ```
 
 Running time: ≈ 1s.
-Output: a map showing the presence and absence points, respectively in blue and red; and the range map to be used as the basis for the updated version, in green. 
+Output: a map showing the presence and absence points, respectively in blue and red; and the range map to be used as the basis for the updated version, in green.\
+\
+\
+3 - Updata the range map based on point records representing presences and absences, and a specialist range map. The spatial resolution has been set to aproximately 1km, or 0.008 degrees.
+
+```{r, warning = FALSE}
+new_range <- updateRange(occ = sps_occurrence, 
+                         range = Euchloe_ausonia_shp,
+                         res = 0.008,
+                         red2 = 0.25,
+                         study_area = "presence")
+```
+
+Running time: ≈ 45s.
+Output: a shapefile representing an updated range map.\
+\
+\
+4 - Visualise the species presences and absences, the previous range, and the updated range.
+
+```{r, warning = FALSE}
+visualiseResults(occ = sps_occurrence, regional = TRUE,                      range = Euchloe_ausonia_shp,
+                 updated_range = new_range)
+```
+Running time: ≈ 2s.
+Output: three maps representing the presences and absences, the range map used as a basis, and the updated range map, respectively. The updated range map is pixelated according to the size of the grain cell.
